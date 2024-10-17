@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posts</title>
+</head>
+<body>
+  <h2>All Posts</h2>
+  
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <h3><%= post.country %>, <%= post.city %></h3>
+        <p>Visited: <%= post.timeOfYear.toDateString() %></p>
+
+        <h4>Reviews:</h4>
+        <ul>
+          <% post.reviews.forEach(review => { %>
+            <li>
+              <p><%= review.content %> (Rating: <%= review.rating %>/4)</p>
+            </li>
+          <% }) %>
+        </ul>
+
+        <h4>Add a Review</h4>
+        <form action="/posts/<%= post._id %>/reviews" method="POST">
+          <textarea name="content" placeholder="Review content" required></textarea>
+          <input type="number" name="rating" min="0" max="4" placeholder="Rating (0-4)" required>
+          <button type="submit">Submit Review</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h4>Add a New Post</h4>
+  <form action="/posts" method="POST">
+    <input type="text" name="country" placeholder="Country" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="date" name="timeOfYear" placeholder="Time of Year" required>
+    <button type="submit">Add Post</button>
+  </form>
+</body>
+</html>
