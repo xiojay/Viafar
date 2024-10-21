@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Post</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1>Create a New Post</h1>
+        <form action="/posts/new" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" required>
+            </div>
+            <div>
+                <label for="writtenText">Description:</label>
+                <textarea id="writtenText" name="writtenText" placeholder="Write something about your experience"></textarea>
+            </div>
+            <div>
+                <label for="photos">Upload Photos:</label>
+                <input type="file" id="photos" name="photos" multiple accept="image/*">
+            </div>
+            <div>
+                <label for="video">Upload Video (15 sec max):</label>
+                <input type="file" id="video" name="video" accept="video/mp4">
+            </div>
+            <button type="submit">Create Post</button>
+        </form>
+    </div>
+</body>
+</html>

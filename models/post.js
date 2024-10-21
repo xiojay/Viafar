@@ -1,21 +1,36 @@
 const mongoose = require('mongoose');
-const reviewSchema = require('./review').schema
 
 const postSchema = new mongoose.Schema({
-  country: {
-    type: String,
-    required: true
-  },
-  city: {
-    type: String,
-    required: true
-  },
-  timeOfYear: {
-    type: Date,
-    required: true
-  },
-  reviews: [reviewSchema],
+    country: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    startDate: {
+        type: Date,
+        required: true
+    },
+    endDate: {
+        type: Date,
+        required: true
+    },
+    writtenText: {
+        type: String,
+    },
+    photos: [String],
+    video: String,
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 });
 
-const post = mongoose.model('post', postSchema)
-module.exports = post
+module.exports = mongoose.model('Post', postSchema);

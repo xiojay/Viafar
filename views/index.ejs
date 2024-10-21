@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaFar</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Viafar, let's travel together!</h1>
+    <%- include('partials/navbar') %>
+
+    <div class="main-content">
+        <% if (!user) { %>
+            <h1>Welcome to ViaFar!</h1>
+            <p>The place to share your experiences or discover new places!</p>
+            <p><a href="/signup">Sign up</a> to get started!</p>
+            <p>Have an account?<a href="/signin"> Sign In.</a></p>
+        <% } else { %>
+            <h1>Welcome, <%= user.username %>!</h1>
+            <h3>Your Recent Searches</h3>
+            <% if (recentSearches && recentSearches.length > 0) { %>
+                <ul>
+                    <% recentSearches.forEach(function(search) { %>
+                        <li><%= search %></li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>You haven't searched for anything recently.</p>
+            <% } %>
+        <% } %>
+    </div>
 </body>
 </html>

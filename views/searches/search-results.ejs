@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1>Search Results for "<%= query %>"</h1>
+        
+        <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <div class="post">
+                    <h2><%= post.country %>, <%= post.city %></h2>
+                    <p>Posted by: <%= post.createdBy ? post.createdBy.username : 'Unknown User' %></p>
+                    <p>Start Date: <%= new Date(post.startDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                    <p>End Date: <%= new Date(post.endDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                    
+                    <p><%= post.writtenText %></p>
+                    <a href="/posts/<%= post._id %>/view">View Post</a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No posts found. <a href="/search">Search again</a></p>
+        <% } %>
+    </div>
+</body>
+</html>

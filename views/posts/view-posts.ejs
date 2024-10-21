@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Post</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1><%= post.country %>, <%= post.city %></h1>
+        <% if (post.createdBy) { %>
+            <p>Posted by: <%= post.createdBy.username %></p>
+        <% } else { %>
+            <p>Posted by: Unknown User</p>
+        <% } %>
+
+        <% if (post.startDate) { %>
+            <p>Start Date: <%= new Date(post.startDate).toDateString() %></p>
+        <% } else { %>
+            <p>Start Date: Not provided</p>
+        <% } %>
+
+        <% if (post.endDate) { %>
+            <p>End Date: <%= new Date(post.endDate).toDateString() %></p>
+        <% } else { %>
+            <p>End Date: Not provided</p>
+        <% } %>
+
+        <p><%= post.writtenText %></p>
+
+        <% if (post.photos && post.photos.length > 0) { %>
+            <div class="photos">
+                <% post.photos.forEach(photo => { %>
+                    <img src="/<%= photo %>" alt="User uploaded photo" class="post-photo">
+                <% }) %>
+            </div>
+        <% } %>
+
+        <% if (post.video) { %>
+            <video controls width="400">
+                <source src="/<%= post.video %>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        <% } %>
+
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <% if (post.reviews && post.reviews.length > 0) { %>
+                <% post.reviews.forEach(review => { %>
+                    <div class="review">
+                        <p>Rating: <%= review.rating %> / 5</p>
+                        <% if (review.createdBy) { %>
+                            <p><%= review.createdBy.username %>: "<%= review.content %>"</p>
+                        <% } else { %>
+                            <p>Anonymous: "<%= review.content %>"</p>
+                        <% } %>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No reviews yet.</p>
+            <% } %>
+        </div>
+        
+        <div class="add-review">
+            <h2>Add a Review</h2>
+            <form action="/posts/<%= post._id %>/reviews" method="POST">
+                <textarea name="content" placeholder="Write your review here..." rows="4" required></textarea>
+                <label for="rating">Rating:</label>
+                <input type="number" id="rating" name="rating" min="1" max="4">
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

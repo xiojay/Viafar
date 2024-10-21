@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Posts</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1>Search for Posts by Country or City</h1>
+        <form action="/searches/search-results" method="GET">
+            <input type="text" name="query" placeholder="Search by country or city" required>
+            <button type="submit">Search</button>
+        </form>
+        
+    </div>
+</body>
+</html>

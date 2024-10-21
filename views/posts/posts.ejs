@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Posts</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1>Your Posts</h1>
+        <div class="add-post-button">
+            <a href="/posts/new" class="button">+ Add New Post</a>
+        </div>
+
+        <% if (posts.length > 0) { %>
+            <ul class="post-list">
+                <% posts.forEach(function(post) { %>
+                    <li class="post">
+                        <h2><%= post.city %>, <%= post.country %></h2>
+                        <p>Time of Year: <%= new Date(post.startDate).toDateString() %> - <%= new Date(post.endDate).toDateString() %></p>
+                        <p><%= post.writtenText %></p>
+
+                        <% if (post.photos && post.photos.length > 0) { %>
+                            <div class="photos">
+                                <% post.photos.forEach(photo => { %>
+                                    <img src="/<%= photo %>" alt="Photo for <%= post.city %>, <%= post.country %>">
+                                <% }) %>
+                            </div>
+                        <% } %>
+
+                        <% if (post.video) { %>
+                            <div class="video">
+                                <video controls>
+                                    <source src="/<%= post.video %>" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        <% } %>
+
+                        <a href="/posts/<%= post._id %>/edit" class="button">Edit</a>
+                        <form action="/posts/<%= post._id %>/delete" method="POST" style="display: inline;">
+                            <button type="submit" class="button delete-button">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>You haven't created any posts yet. <a href="/posts/new">Create one now</a>!</p>
+        <% } %>
+    </div>
+</body>
+</html>

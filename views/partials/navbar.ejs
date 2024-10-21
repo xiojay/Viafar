@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+        <a href="/">Home</a>
+        
+        <% if (!user) { %>
+            <a href="/signin">Sign In</a>
+            <a href="/signup">Sign Up</a>
+        <% } else { %>
+            <a href="/search">Search</a>
+            <a href="/posts">Posts</a>
+            <a href="/logout">Logout</a>
+            <strong><%= user.username %></strong>
+        <% } %>
+    </ul>
+</nav>
