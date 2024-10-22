@@ -6,6 +6,11 @@ const argon2 = require('argon2');
 const session = require('express-session');
 const multer = require('multer');
 const path = require('path');
+const port = process.env.PORT || 3000
+
+
+
+
 
 const app = express();
 
@@ -347,6 +352,6 @@ app.post('/posts/:id/reviews', isAuthenticated, async (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Listening on port 3000')
-});
+}); 
