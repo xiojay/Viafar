@@ -6,7 +6,7 @@ ViaFar is a social media based application that allows users to post about their
 With it's social media based features, users are able to post, review/comment on other users experiences and serves as a great way to discover new places around the world. 
 
 ### Getting Started
-- [Deployed App]()
+- [Deployed App](https://viafar-7a50a274cf25.herokuapp.com/)
 - Planning Materials? Visit my [Trello](https://trello.com/b/IEDAV2Ss/travel-app)!
 
 To get started, visit the deployed app, create an account, and search for places you're interested in or share your experiences with others!
