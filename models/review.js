@@ -7,9 +7,9 @@ const reviewSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: true,
+        required: false,
         min: 1,
-        max: 5
+        max: 4
     },
     post: {
         type: mongoose.Schema.Types.ObjectId,

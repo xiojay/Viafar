@@ -10,45 +10,47 @@
     <%- include('../partials/navbar') %>
 
     <div class="container">
-        <h1>Your Posts</h1>
+        <h1 class="page-title">Your Posts</h1>
         <div class="add-post-button">
-            <a href="/posts/new" class="button">+ Add New Post</a>
+            <a href="/posts/new" class="button add-post">+ Add New Post</a>
         </div>
 
         <% if (posts.length > 0) { %>
             <ul class="post-list">
                 <% posts.forEach(function(post) { %>
                     <li class="post">
-                        <h2><%= post.city %>, <%= post.country %></h2>
-                        <p>Time of Year: <%= new Date(post.startDate).toDateString() %> - <%= new Date(post.endDate).toDateString() %></p>
-                        <p><%= post.writtenText %></p>
+                        <h2 class="post-title"><%= post.city %>, <%= post.country %></h2>
+                        <p class="post-date">Dates: <%= new Date(post.startDate).toLocaleDateString() %> - <%= new Date(post.endDate).toLocaleDateString() %></p>
+                        <p class="post-text"><%= post.writtenText %></p>
 
                         <% if (post.photos && post.photos.length > 0) { %>
-                            <div class="photos">
+                            <div class="media-container photos">
                                 <% post.photos.forEach(photo => { %>
-                                    <img src="/<%= photo %>" alt="Photo for <%= post.city %>, <%= post.country %>">
+                                    <img src="/<%= photo %>" alt="Photo for <%= post.city %>, <%= post.country %>" class="post-photo">
                                 <% }) %>
                             </div>
                         <% } %>
 
                         <% if (post.video) { %>
-                            <div class="video">
-                                <video controls>
+                            <div class="media-container video">
+                                <video controls class="post-video">
                                     <source src="/<%= post.video %>" type="video/mp4">
-                                    Your browser does not support the video tag.
+                                    Your browser does not support.
                                 </video>
                             </div>
                         <% } %>
 
-                        <a href="/posts/<%= post._id %>/edit" class="button">Edit</a>
-                        <form action="/posts/<%= post._id %>/delete" method="POST" style="display: inline;">
-                            <button type="submit" class="button delete-button">Delete</button>
-                        </form>
+                        <div class="post-actions">
+                            <a href="/posts/<%= post._id %>/edit" class="edit-button">Edit</a>
+                            <form action="/posts/<%= post._id %>/delete" method="POST">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </div>
                     </li>
                 <% }) %>
             </ul>
         <% } else { %>
-            <p>You haven't created any posts yet. <a href="/posts/new">Create one now</a>!</p>
+            <p class="no-posts">You haven't created any posts yet. <a href="/posts/new">Create one now</a>!</p>
         <% } %>
     </div>
 </body>

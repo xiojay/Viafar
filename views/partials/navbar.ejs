@@ -1,5 +1,5 @@
-<nav>
-    <ul>
+<nav class="navbar">
+    <div class="nav-links">
         <a href="/">Home</a>
         
         <% if (!user) { %>
@@ -9,7 +9,9 @@
             <a href="/search">Search</a>
             <a href="/posts">Posts</a>
             <a href="/logout">Logout</a>
-            <strong><%= user.username %></strong>
         <% } %>
-    </ul>
+    </div>
+    <% if (user) { %>
+        <div class="username"><strong><%= user.username %></strong></div>
+    <% } %>
 </nav>

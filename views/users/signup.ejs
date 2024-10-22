@@ -8,11 +8,11 @@
   </head>
   <body>
     <%- include('../partials/navbar') %>
-
+<h1>ViaFar</h1>
     <ul>
       <form action="/signup" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
         <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Sign Up</button>
       </form>

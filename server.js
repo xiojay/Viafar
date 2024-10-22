@@ -47,7 +47,7 @@ const upload = multer({
 // Middleware
 app.use(express.urlencoded({ extended: false }))
 app.use(session({
-    secret: 'yourSecretKey',
+    secret: 'SecretKey',
     resave: false,
     saveUninitialized: false
 }));

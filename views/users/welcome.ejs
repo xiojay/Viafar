@@ -7,10 +7,12 @@
     <title>Welcome</title>
 </head>
 <body>
-    <%- include('partials/navbar') %>
+    <%- include('../partials/navbar') %>
 
-    <h1>Welcome, <%= username %>!</h1>
-    <p>Your account has been successfully created.</p>
-    <a href="/signin">Click here to sign in!</a>
+    <div class="container">
+        <h1>Welcome, <%= username %>!</h1>
+        <p>Your account has been successfully created.</p>
+        <a href="/signin">Click here to sign in!</a>
+    </div>
 </body>
 </html>
